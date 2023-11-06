@@ -57,7 +57,7 @@ def linearSpellCheck(input, dictonary):
             position = i
         else:
             check = False
-        endtime = time.time()
+
     if check == True:
         endtime = time.time()
         print(f"item is in line{i} of dictonary({endtime - starttime} seconds)")
