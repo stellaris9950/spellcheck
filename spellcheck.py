@@ -23,11 +23,38 @@ def main():
 
         if menu_selection == "1":
             search_item = input("Please Enter a Word:")
-            linearSpellCheck(search_item, dictionary)
+
+            starttime = time.time()
+            result = linearSearch(search_item, dictionary)
+            endtime = time.time()
+            if result == -1:
+                print(f"item not in dictonary({endtime - starttime} seconds)")
+            else:
+                print(f"item is in line {result} of dictonary({endtime - starttime} seconds)")
+
         elif menu_selection == "2":
-            print("constructing")
+
+            search_item = input("Please Enter a Word:")
+
+            starttime = time.time()
+            result = binarySearch(search_item, dictionary)
+            endtime = time.time()
+            if result == -1:
+                print(f"item not in dictonary({endtime - starttime} seconds)")
+            else:
+                print(f"item is in line {result} of dictonary({endtime - starttime} seconds)")
+
         elif menu_selection == "3":
-            print("constructing")
+
+            search_item = input("Please Enter a Word:")
+
+            starttime = time.time()
+            result = linearSearch(search_item, aliceWords)
+            endtime = time.time()
+            if result == -1:
+                print(f"item not in alice in wonderland ({endtime - starttime} seconds)")
+            else:
+                print(f"item is in line {result} of alice in wonderland ({endtime - starttime} seconds)")
         elif menu_selection == "4":
             print("constructing")
         elif menu_selection == "5":
@@ -47,26 +74,28 @@ def loadWordsFromFile(fileName):
     return re.split('\s+', textData)
 # end loadWordsFromFile()
 
-def linearSpellCheck(input, dictonary):
-    starttime = time.time()
 
-    position = 0
+def linearSearch(input, dictonary):
     for i in range(len(dictonary)):
         if dictonary[i] == input:
-            check = True
-            position = i
-        else:
-            check = False
+            return i
 
-    if check == True:
-        endtime = time.time()
-        print(f"item is in line{i} of dictonary({endtime - starttime} seconds)")
-    else:
-        endtime = time.time()
-        print(f"item not in dictonary({endtime - starttime} seconds)")
     return -1
 
+def binarySearch(item, dictonary):
+    lower_index = 0
+    higher_index = len(dictonary) - 1
+    while lower_index <= higher_index:
+        middle_index = ( lower_index + higher_index ) // 2
+        if item == dictonary[middle_index]:
+            return middle_index
+        elif item < dictonary[middle_index]:
+            higher_index = middle_index - 1
+        elif item > dictonary[middle_index]:
+            lower_index = middle_index + 1
+    return -1
 
 
 # Call main() to begin program
 main()
+
