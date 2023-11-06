@@ -45,18 +45,23 @@ def main():
                 print(f"item is in line {result} of dictonary({endtime - starttime} seconds)")
 
         elif menu_selection == "3":
-
-            search_item = input("Please Enter a Word:")
+            # search_item = input("Please Enter a Word:")
 
             starttime = time.time()
-            result = linearSearch(search_item, aliceWords)
+
+            check = 0
+            for item in aliceWords:
+
+                result = linearSearch(item, dictionary)
+                if result == -1:
+                    check += 1
+
             endtime = time.time()
-            if result == -1:
-                print(f"item not in alice in wonderland ({endtime - starttime} seconds)")
-            else:
-                print(f"item is in line {result} of alice in wonderland ({endtime - starttime} seconds)")
+            print(f" {check} words of alice in wonderland not found in Dictonary ({endtime - starttime} seconds)")
+
         elif menu_selection == "4":
-            print("constructing")
+            print("You cannot use binary search with a not sorted list.")
+
         elif menu_selection == "5":
             print("\nGOODBYE!\n")
             loop = False
