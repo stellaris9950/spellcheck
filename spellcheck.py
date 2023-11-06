@@ -51,16 +51,23 @@ def main():
 
             check = 0
             for item in aliceWords:
-
                 result = linearSearch(item, dictionary)
                 if result == -1:
                     check += 1
-
             endtime = time.time()
             print(f" {check} words of alice in wonderland not found in Dictonary ({endtime - starttime} seconds)")
 
         elif menu_selection == "4":
-            print("You cannot use binary search with a not sorted list.")
+
+            starttime = time.time()
+
+            check = 0
+            for item in aliceWords:
+                result = binarySearch(item, dictionary)
+                if result == -1:
+                    check += 1
+            endtime = time.time()
+            print(f" {check} words of alice in wonderland not found in Dictonary ({endtime - starttime} seconds)")
 
         elif menu_selection == "5":
             print("\nGOODBYE!\n")
